@@ -1,6 +1,6 @@
 const express = require("express");
-const uuid = require("uuid");
 const cors = require("cors");
+let subscribers = ["gustavoalias@gmail.com", "lauty@gmail.com"];
 
 const app = express();
 app.use(express.json());
@@ -17,8 +17,6 @@ app.use((req, res, next) => {
   next();
 });
 
-let subscribers = ["gustavoalias@gmail.com", "lauty@gmail.com"];
-
 app.get("/newsletter", (req, res) => {
   res.send("Hello");
 });
@@ -30,6 +28,4 @@ app.post("/newsletter", (req, res) => {
   console.log(subscribers);
 });
 
-app.listen(8080, () => {
-  console.log("Server running on port 8080");
-});
+module.exports = app;
