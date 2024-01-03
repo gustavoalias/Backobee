@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 
 const {
   findAllSubscribers,
@@ -10,15 +11,18 @@ const {
   createContactForm,
 } = require("./controllers/ContactFormController");
 
-const cors = require("cors");
-
 const server = express();
 server.use(express.json());
-server.use(cors());
+
+// Configuración CORS
+const corsOptions = {
+  origin: "http://localhost:3000", // Reemplaza PUERTO_DEL_FRONTEND con el puerto real de tu aplicación frontend
+  credentials: true, // Permite incluir credenciales en las solicitudes (por ejemplo, cookies, certificados SSL, etc.)
+};
+
+server.use(cors(corsOptions));
 
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -27,7 +31,8 @@ server.use((req, res, next) => {
   next();
 });
 
-// Newsletter
+// Rutas
+
 server.get("/newsletter", async (req, res) => {
   try {
     const subs = await findAllSubscribers();
