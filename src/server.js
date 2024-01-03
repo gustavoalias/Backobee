@@ -16,7 +16,12 @@ server.use(express.json());
 
 // Configuración CORS
 const corsOptions = {
-  origin: ["http://localhost:3000", "https://localhost:3000"],
+  origin: [
+    "http://localhost:3000",
+    "https://localhost:3000",
+    "http://kobee.com.ar:3000",
+    "https://kobee.com.ar:3000",
+  ],
   credentials: true, // Permite incluir credenciales en las solicitudes (por ejemplo, cookies, certificados SSL, etc.)
 };
 
