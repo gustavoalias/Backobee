@@ -16,7 +16,7 @@ server.use(express.json());
 
 // Configuración CORS
 const corsOptions = {
-  origin: "http://localhost:3000", // Reemplaza PUERTO_DEL_FRONTEND con el puerto real de tu aplicación frontend
+  origin: ["http://localhost:3000", "https://localhost:3000"],
   credentials: true, // Permite incluir credenciales en las solicitudes (por ejemplo, cookies, certificados SSL, etc.)
 };
 
