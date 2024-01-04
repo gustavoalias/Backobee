@@ -17,11 +17,10 @@ server.use(express.json());
 // Configuración CORS
 const corsOptions = {
   origin: "*",
-  credentials: true, // Permite incluir credenciales en las solicitudes (por ejemplo, cookies, certificados SSL, etc.)
+  credentials: false, // Permite incluir credenciales en las solicitudes (por ejemplo, cookies, certificados SSL, etc.)
 };
 
-// server.use(cors(corsOptions));
-server.use(cors());
+server.use(cors(corsOptions));
 
 server.use((req, res, next) => {
   res.header(
