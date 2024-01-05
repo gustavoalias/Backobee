@@ -15,19 +15,14 @@ const server = express();
 server.use(express.json());
 
 // Configuración CORS
-const corsOptions = {
-  origin: "*",
-  credentials: false, // Permite incluir credenciales en las solicitudes (por ejemplo, cookies, certificados SSL, etc.)
-};
+// const corsOptions = {
+//   origin: "*",
+//   credentials: false, // Permite incluir credenciales en las solicitudes (por ejemplo, cookies, certificados SSL, etc.)
+// };
 
 var corsOptions = {
-  origin: [
-    "https://kobee.com.ar:3000",
-    "http://kobee.com.ar:3000",
-    "http://localhost:3000",
-    "https://kobee.com.ar",
-    "http://kobee.com.ar",
-  ],
+  origin: "*",
+  credentials: false,
   optionsSuccessStatus: 200, // algunos navegadores antiguos (IE11, varias SmartTVs) tienen problemas con 204
 };
 
