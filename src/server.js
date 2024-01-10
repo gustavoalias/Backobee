@@ -14,12 +14,6 @@ const {
 const server = express();
 server.use(express.json());
 
-// Configuración CORS
-// const corsOptions = {
-//   origin: "*",
-//   credentials: false, // Permite incluir credenciales en las solicitudes (por ejemplo, cookies, certificados SSL, etc.)
-// };
-
 var corsOptions = {
   origin: "*",
   credentials: false,
@@ -27,15 +21,6 @@ var corsOptions = {
 };
 
 server.use(cors(corsOptions));
-
-// server.use((req, res, next) => {
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-//   next();
-// });
 
 server.use((_req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -46,7 +31,7 @@ server.use((_req, res, next) => {
 
 // Rutas
 
-server.get("/newsletter", async (req, res) => {
+server.get("/api/newsletter", async (req, res) => {
   try {
     const subs = await findAllSubscribers();
     res.status(200).json(subs);
@@ -55,7 +40,7 @@ server.get("/newsletter", async (req, res) => {
   }
 });
 
-server.post("/newsletter", async (req, res) => {
+server.post("/api/newsletter", async (req, res) => {
   try {
     const email = req.body.email;
     const newSub2 = await createSubscriber(email);
@@ -65,7 +50,7 @@ server.post("/newsletter", async (req, res) => {
   }
 });
 
-server.post("/contactform", async (req, res) => {
+server.post("/api/contactform", async (req, res) => {
   try {
     const { nombre, email, message, area } = req.body;
     const newSub2 = await createContactForm({ nombre, email, message, area });
