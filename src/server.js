@@ -31,7 +31,7 @@ server.use((_req, res, next) => {
 
 // Rutas
 
-server.get("/api/newsletter", async (req, res) => {
+server.get("/newsletter", async (req, res) => {
   try {
     const subs = await findAllSubscribers();
     res.status(200).json(subs);
@@ -40,7 +40,7 @@ server.get("/api/newsletter", async (req, res) => {
   }
 });
 
-server.post("/api/newsletter", async (req, res) => {
+server.post("/newsletter", async (req, res) => {
   try {
     const email = req.body.email;
     const newSub2 = await createSubscriber(email);
@@ -50,7 +50,7 @@ server.post("/api/newsletter", async (req, res) => {
   }
 });
 
-server.post("/api/contactform", async (req, res) => {
+server.post("/contactform", async (req, res) => {
   try {
     const { nombre, email, message, area } = req.body;
     const newSub2 = await createContactForm({ nombre, email, message, area });
